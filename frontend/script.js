@@ -195,21 +195,8 @@ function findFAQAnswer(message) {
   return null;
 }
 
-// ----------------- CHAT APP -----------------
+// ----------------- CHAT & PAGE LOGIC -----------------
 document.addEventListener('DOMContentLoaded', () => {
-
-  // ------------------ START BUTTON FIX ------------------
-  const startBtn = el('#startBtn');
-  if (startBtn) {
-    startBtn.addEventListener('click', () => {
-      const district = el('#districtSelect')?.value;
-      const municipality = el('#municipalityInput')?.value.trim();
-      if (!district || !municipality) return alert('Choose district and enter municipality.');
-      userLocation = { district, municipality };
-      showPage('page-choice');
-    });
-  }
-
   const chatContainer = el('#chatContainer');
   const queryForm = el('#queryForm');
 
@@ -221,7 +208,47 @@ document.addEventListener('DOMContentLoaded', () => {
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }
 
-  queryForm.addEventListener('submit', async ev => {
+  // ---------- WELCOME PAGE ----------
+  el('#startBtn')?.addEventListener('click', () => {
+    const district = el('#districtSelect')?.value;
+    const municipality = el('#municipalityInput')?.value.trim();
+    if (!district || !municipality) return alert('Choose district and enter municipality.');
+    userLocation = { district, municipality };
+    showPage('page-choice');
+  });
+
+  el('#demoBtn')?.addEventListener('click', () => {
+    showPage('page-query');
+    appendChat('bot', '(Demo mode) Ask about water, electricity or health.');
+    el('#showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
+  });
+
+  // ---------- CHOICE PAGE BUTTONS ----------
+  el('#chooseQuery')?.addEventListener('click', () => {
+    showPage('page-query');
+    el('#showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
+  });
+
+  el('#chooseComplaint')?.addEventListener('click', () => {
+    showPage('page-complaint');
+    el('#showLocationComplaint').textContent = `${userLocation.municipality}, ${userLocation.district}`;
+  });
+
+  el('#chooseLogin')?.addEventListener('click', () => {
+    showPage('page-login');
+  });
+
+  el('#chooseFAQ')?.addEventListener('click', () => {
+    showPage('page-faq');
+  });
+
+  el('#backFromQuery')?.addEventListener('click', () => showPage('page-choice'));
+  el('#backFromComplaint')?.addEventListener('click', () => showPage('page-choice'));
+  el('#backFromLogin')?.addEventListener('click', () => showPage('page-choice'));
+  el('#backFromFAQ')?.addEventListener('click', () => showPage('page-choice'));
+
+  // ---------- CHAT QUERY ----------
+  queryForm?.addEventListener('submit', async ev => {
     ev.preventDefault();
     const message = el('#queryMessage').value.trim();
     if (!message) return;
@@ -256,5 +283,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ---------- rest of code (login, complaints, FAQ page) remains exactly the same as your previous full code ----------
+  // ---------- USER LOGIN ----------
+  el('#userForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = {
+      username: el('#usernameInput')?.value,
+      address: el('#addressInput')?.value,
+      email: el('#emailInput')?.value
+    };
+    try {
+      const res = await fetch(`${API_BASE}/register-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      el('#userResponseArea').textContent = result.message || result.error;
+    } catch (err) {
+      el('#userResponseArea').textContent = 'Error registering user.';
+      console.error(err);
+    }
+  });
+
+  // ---------- FAQ PAGE ----------
+  el('#faqCategorySelect')?.addEventListener('change', () => {
+    const category = el('#faqCategorySelect').value;
+    const faqContainer = el('#faqContainer');
+    faqContainer.innerHTML = '';
+    if (faqData[category]) {
+      faqData[category].forEach(item => {
+        const qaDiv = document.createElement('div');
+        qaDiv.className = 'faq-item';
+        qaDiv.innerHTML = `<strong>Q:</strong> ${item.q}<br><strong>A:</strong> ${item.a}`;
+        faqContainer.appendChild(qaDiv);
+      });
+    }
+  });
+
+  el('#backFromFAQ')?.addEventListener('click', () => showPage('page-choice'));
+
+  // ---------- COMPLAINT FORM ----------
+  el('#complaintForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = {
+      category: el('#complaintCategory')?.value,
+      issue: el('#complaintTitle')?.value,
+      place: el('#complaintLocation')?.value,
+      description: el('#complaintDesc')?.value
+    };
+    try {
+      const res = await fetch(`${API_BASE}/submit-complaint`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      el('#complaintResponseArea').textContent = result.message || result.error;
+    } catch (err) {
+      el('#complaintResponseArea').textContent = 'Error submitting complaint.';
+      console.error(err);
+    }
+  });
+
+  el('#clearComplaintBtn')?.addEventListener('click', () => {
+    el('#complaintCategory').value = "water";
+    el('#complaintTitle').value = "";
+    el('#complaintLocation').value = "";
+    el('#complaintDesc').value = "";
+    el('#complaintFile').value = "";
+    el('#filePreview').innerHTML = "";
+    el('#complaintResponseArea').textContent = "";
+  });
 });
