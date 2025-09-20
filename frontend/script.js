@@ -197,6 +197,19 @@ function findFAQAnswer(message) {
 
 // ----------------- CHAT APP -----------------
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ------------------ START BUTTON FIX ------------------
+  const startBtn = el('#startBtn');
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      const district = el('#districtSelect')?.value;
+      const municipality = el('#municipalityInput')?.value.trim();
+      if (!district || !municipality) return alert('Choose district and enter municipality.');
+      userLocation = { district, municipality };
+      showPage('page-choice');
+    });
+  }
+
   const chatContainer = el('#chatContainer');
   const queryForm = el('#queryForm');
 
