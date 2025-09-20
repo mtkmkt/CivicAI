@@ -8,7 +8,7 @@ CORS(app)
 client = MongoClient("mongodb+srv://raechel:mtkpooja@cluster0.khzhoku.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 db = client['civicai']
 complaints_collection = db['complaints']
-
+print("Databases:", client.list_database_names())
 @app.route('/')
 def home():
     return "Backend is working!"
@@ -26,7 +26,7 @@ def submit_complaint():
         # Extract fields from frontend
         category = data.get('category')
         issue = data.get('issue')
-        place = data.get('place')
+        place = data.get('location')
         description = data.get('description')
 
         # Basic validation

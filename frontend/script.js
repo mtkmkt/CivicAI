@@ -311,12 +311,11 @@ document.getElementById('complaintForm').addEventListener('submit', async functi
   e.preventDefault();
 
   const data = {
-    name: "Raechel",  // You can make this dynamic later
-    issue: document.getElementById('complaintTitle').value,
-    location: document.getElementById('complaintLocation').value,
-    category: document.getElementById('complaintCategory').value,
-    description: document.getElementById('complaintDesc').value
-  };
+  category: document.getElementById('complaintCategory').value,
+  issue: document.getElementById('complaintTitle').value,
+  place: document.getElementById('complaintLocation').value,
+  description: document.getElementById('complaintDesc').value
+};;
 
   try {
     const res = await fetch(`${API_BASE}/submit-complaint`, {
@@ -332,7 +331,6 @@ document.getElementById('complaintForm').addEventListener('submit', async functi
     console.error(err);
   }
 });
-
 // Clear complaint form
 document.getElementById('clearComplaintBtn').addEventListener('click', () => {
   document.getElementById('complaintCategory').value = "water";
