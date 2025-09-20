@@ -1,40 +1,56 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+// Function to navigate between sections
+function goToChoice() {
+    document.getElementById('welcome-page').style.display = 'none';
+    document.getElementById('choice-page').style.display = 'block';
 }
 
-.chat-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
+function showQueryPage() {
+    document.getElementById('choice-page').style.display = 'none';
+    document.getElementById('query-page').style.display = 'block';
 }
 
-.chat-box {
-    height: 200px;
-    border: 1px solid #ccc;
-    overflow-y: scroll;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
+function showComplaintPage() {
+    document.getElementById('choice-page').style.display = 'none';
+    document.getElementById('complaint-page').style.display = 'block';
 }
 
-input, textarea, select, button {
-    width: 100%;
-    margin: 5px 0;
-    padding: 10px;
+function backToChoice() {
+    document.getElementById('query-page').style.display = 'none';
+    document.getElementById('complaint-page').style.display = 'none';
+    document.getElementById('choice-page').style.display = 'block';
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+// Chat functionality
+const sendBtn = document.getElementById('send-btn');
+const userInput = document.getElementById('user-input');
+const chatBox = document.getElementById('chat-box');
+
+if(sendBtn) {
+    sendBtn.addEventListener('click', () => {
+        const message = userInput.value.trim();
+        if (message === "") return;
+
+        const userMsg = document.createElement('div');
+        userMsg.textContent = "You: " + message;
+        chatBox.appendChild(userMsg);
+
+        userInput.value = "";
+
+        const aiMsg = document.createElement('div');
+        aiMsg.textContent = "Bot: Response will appear here";
+        chatBox.appendChild(aiMsg);
+    });
 }
 
-button:hover {
-    background-color: #0056b3;
+// Complaint functionality
+const submitComplaint = document.getElementById('submit-complaint');
+if(submitComplaint) {
+    submitComplaint.addEventListener('click', () => {
+        const category = document.getElementById('category').value;
+        const desc = document.getElementById('complaint-desc').value.trim();
+        if(desc === "") return alert("Please enter complaint description");
+
+        alert(`Complaint submitted for ${category}`);
+        document.getElementById('complaint-desc').value = "";
+    });
 }

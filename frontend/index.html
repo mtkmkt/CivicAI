@@ -7,18 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-        <h2>Community Chatbot</h2>
+    <!-- 1. Welcome Page -->
+    <section id="welcome-page" class="page">
+        <h1>Welcome to Community Chatbot</h1>
+        <button onclick="goToChoice()">Continue</button>
+    </section>
 
-        <!-- Chat Section -->
-        <div class="chat-box" id="chat-box"></div>
+    <!-- 2. Choice Page -->
+    <section id="choice-page" class="page" style="display:none;">
+        <h2>What do you want to do?</h2>
+        <button onclick="showQueryPage()">Ask a Query</button>
+        <button onclick="showComplaintPage()">Place a Complaint</button>
+    </section>
 
-        <!-- Input Section -->
+    <!-- 3. Query Page -->
+    <section id="query-page" class="page" style="display:none;">
+        <h2>Ask Your Question</h2>
+        <div id="chat-box" class="chat-box"></div>
         <input type="text" id="user-input" placeholder="Type your question...">
         <button id="send-btn">Send</button>
+        <button onclick="backToChoice()">Back</button>
+    </section>
 
-        <!-- Complaint Section -->
-        <h3>Submit Complaint</h3>
+    <!-- 4. Complaint Page -->
+    <section id="complaint-page" class="page" style="display:none;">
+        <h2>Submit Complaint</h2>
         <select id="category">
             <option value="water">Water</option>
             <option value="electricity">Electricity</option>
@@ -26,7 +39,8 @@
         </select>
         <textarea id="complaint-desc" placeholder="Describe the issue"></textarea>
         <button id="submit-complaint">Submit Complaint</button>
-    </div>
+        <button onclick="backToChoice()">Back</button>
+    </section>
 
     <script src="script.js"></script>
 </body>
