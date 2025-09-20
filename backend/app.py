@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from flask_cors import CORS
-
+import datetime
 app = Flask(__name__)
 CORS(app)
 client = MongoClient("mongodb+srv://raechel:mtkpooja@cluster0.khzhoku.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
@@ -21,32 +21,35 @@ def handle_query():
 def submit_complaint():
     try:
         data = request.get_json(force=True)
-        print("Received data:", data)
+        print("Received complaint:", data)
 
-        # Extract expected fields
+        # Extract fields from frontend
+        category = data.get('category')
         issue = data.get('issue')
         place = data.get('place')
         description = data.get('description')
 
         # Basic validation
-        if not issue or not place or not description:
+        if not category or not issue or not place or not description:
             return jsonify({"error": "Missing required fields"}), 400
 
         # Create complaint document
         complaint = {
+            "category": category,
             "issue": issue,
             "place": place,
-            "description": description
+            "description": description,
+            "timestamp": datetime.datetime.utcnow()
         }
 
-        # Insert into MongoDB
+        # Save to MongoDB
         result = complaints_collection.insert_one(complaint)
-        print("Inserted complaint ID:", result.inserted_id)
+        print("Inserted ID:", result.inserted_id)
 
         return jsonify({"message": "Complaint submitted successfully!"}), 200
 
     except Exception as e:
-        print("🔥 Error submitting complaint:", str(e))
+        print("🔥 Error:", str(e))
         return jsonify({"error": "Internal server error"}), 500
 
 
