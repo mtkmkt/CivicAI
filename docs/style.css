@@ -9,16 +9,23 @@
   font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
   color-scheme: light;
 }
+
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,body{
+  height:100%;
   margin:0;
+}
+
+body{
   background: linear-gradient(135deg,var(--bg1),var(--bg2));
-  display:flex;
-  align-items:center;
-  justify-content:center;
   padding:28px;
   color:#222;
+  min-height: 100vh;
 }
 
 .app{width:100%; max-width:980px; margin:0 auto}
@@ -37,6 +44,7 @@ body{
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   border: 1px solid rgba(255,255,255,0.3);
 }
+
 .hero{text-align:center;padding:48px}
 .hero h1{margin:0 0 8px;font-size:28px;color:#222}
 .hero p{margin:0 0 20px;color:#444}
@@ -86,4 +94,7 @@ textarea{resize:vertical}
 .file-preview img{max-width:96px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.2)}
 
 .footer{margin-top:14px;color:#333;font-size:12px;text-align:center}
-@media (max-width:700px){.choice-grid{grid-template-columns:1fr}}
+
+@media (max-width:700px){
+  .choice-grid{grid-template-columns:1fr}
+}
