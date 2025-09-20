@@ -8,6 +8,7 @@ CORS(app)
 client = MongoClient("mongodb+srv://raechel:mtkpooja@cluster0.khzhoku.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 db = client['civicai']
 complaints_collection = db['complaints']
+users_collection = db['userhub']
 print("Databases:", client.list_database_names())
 @app.route('/')
 def home():
@@ -52,7 +53,43 @@ def submit_complaint():
         print("🔥 Error:", str(e))
         return jsonify({"error": "Internal server error"}), 500
 
+@app.route('/register-user', methods=['POST'])
+def register_user():
+    try:
+        data = request.get_json(force=True)
+        print("Received user data:", data)
 
+        username = data.get('username')
+        address = data.get('address')
+        email = data.get('email')
+
+        if not username or not address or not email:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # 🔄 Use a different database for users
+        user_db = client['civicai']
+        users_collection = user_db['userhub']
+
+        # Check for duplicate email
+        existing_user = users_collection.find_one({"email": email})
+        if existing_user:
+            return jsonify({"error": "User already exists"}), 409
+
+        user = {
+            "username": username,
+            "address": address,
+            "email": email,
+            "registered_at": datetime.datetime.utcnow()
+        }
+
+        result = users_collection.insert_one(user)
+        print("Inserted user ID:", result.inserted_id)
+
+        return jsonify({"message": "User registered successfully!"}), 200
+
+    except Exception as e:
+        print("🔥 Error registering user:", str(e))
+        return jsonify({"error": "Internal server error"}), 500
 @app.route('/get-complaints', methods=['GET'])
 def get_complaints():
     try:

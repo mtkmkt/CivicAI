@@ -167,93 +167,132 @@ const faqData = {
 };
 
 const API_BASE = 'http://localhost:5050';
-let userLocation = {district:'', municipality:''};
+let userLocation = { district: '', municipality: '' };
 
-function el(q){return document.querySelector(q)}
+function el(q) { return document.querySelector(q); }
 
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const elPage = document.getElementById(id);
-  if(elPage) elPage.classList.remove('hidden');
+  if (elPage) elPage.classList.remove('hidden');
   const baseText = document.getElementById('apiBaseText');
-  if(baseText) baseText.textContent = API_BASE;
+  if (baseText) baseText.textContent = API_BASE;
 }
 
-// ------------------ MOCK QUERY REPLY -----------------
-function mockQueryReply(category){
-  const mapping={
-    water:"Check with your local water board. If outage exceeds 4 hours, escalate to complaint form.",
-    electricity:"Check if neighbours affected. Call emergency for sparks. File complaint for outages.",
-    health:"Non-emergency: consult nearest health center. Not medical advice."
+function mockQueryReply(category) {
+  const mapping = {
+    water: "Check with your local water board. If outage exceeds 4 hours, escalate to complaint form.",
+    electricity: "Check if neighbours affected. Call emergency for sparks. File complaint for outages.",
+    health: "Non-emergency: consult nearest health center. Not medical advice."
   };
   return mapping[category] || "Thanks — we'll reply soon.";
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
 
   // ------------------ WELCOME PAGE -----------------
-  el('#startBtn').addEventListener('click',()=>{
+  el('#startBtn').addEventListener('click', () => {
     const district = el('#districtSelect').value;
     const municipality = el('#municipalityInput').value.trim();
-    if(!district||!municipality) return alert('Choose district and enter municipality.');
-    userLocation = {district, municipality};
+    if (!district || !municipality) return alert('Choose district and enter municipality.');
+    userLocation = { district, municipality };
     showPage('page-choice');
   });
 
-  el('#demoBtn').addEventListener('click',()=>{
+  el('#demoBtn').addEventListener('click', () => {
     showPage('page-query');
-    appendChat('bot','(Demo mode) Ask about water, electricity or health.');
+    appendChat('bot', '(Demo mode) Ask about water, electricity or health.');
     document.getElementById('showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
   });
 
   // ------------------ CHOICE PAGE -----------------
-  el('#chooseQuery').addEventListener('click',()=>{
+  el('#chooseQuery').addEventListener('click', () => {
     showPage('page-query');
     document.getElementById('showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
   });
-  el('#chooseComplaint').addEventListener('click',()=>{
+
+  el('#chooseComplaint').addEventListener('click', () => {
     showPage('page-complaint');
     document.getElementById('showLocationComplaint').textContent = `${userLocation.municipality}, ${userLocation.district}`;
   });
-  el('#backFromQuery').addEventListener('click',()=>showPage('page-choice'));
-  el('#backFromComplaint').addEventListener('click',()=>showPage('page-choice'));
+
+  el('#chooseLogin').addEventListener('click', () => {
+    showPage('page-login');
+  });
+
+  el('#backFromQuery').addEventListener('click', () => {
+    showPage('page-choice');
+  });
+
+  el('#backFromComplaint').addEventListener('click', () => {
+    showPage('page-choice');
+  });
+
+  el('#backFromLogin').addEventListener('click', () => {
+    showPage('page-choice');
+  });
 
   // ------------------ CHAT QUERY PAGE -----------------
   const chatContainer = el('#chatContainer');
   const queryForm = el('#queryForm');
 
-  function appendChat(who,text){
+  function appendChat(who, text) {
     const div = document.createElement('div');
-    div.className = 'chat-bubble '+who;
+    div.className = 'chat-bubble ' + who;
     div.textContent = text;
     chatContainer.appendChild(div);
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }
 
-  queryForm.addEventListener('submit', async ev=>{
+  queryForm.addEventListener('submit', async ev => {
     ev.preventDefault();
     const message = el('#queryMessage').value.trim();
-    if(!message) return;
+    if (!message) return;
 
-    appendChat('user',message);
-    el('#queryMessage').value='';
+    appendChat('user', message);
+    el('#queryMessage').value = '';
 
     const botBubble = document.createElement('div');
-    botBubble.className='chat-bubble bot';
-    botBubble.textContent='...';
+    botBubble.className = 'chat-bubble bot';
+    botBubble.textContent = '...';
     chatContainer.appendChild(botBubble);
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
-    try{
-      const res = await fetch(API_BASE+'/api/query',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({message,location:userLocation})
+    try {
+      const res = await fetch(API_BASE + '/api/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, location: userLocation })
       });
       const data = await res.json();
       botBubble.textContent = data.answer || '(Demo) Answer coming soon.';
-    }catch(err){
+    } catch (err) {
       botBubble.textContent = `(Demo) ${mockQueryReply('water')}`;
+    }
+  });
+
+  // ------------------ USER LOGIN -----------------
+  document.getElementById('userForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const data = {
+      username: document.getElementById('usernameInput').value,
+      address: document.getElementById('addressInput').value,
+      email: document.getElementById('emailInput').value
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/register-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById('userResponseArea').textContent = result.message || result.error;
+    } catch (err) {
+      document.getElementById('userResponseArea').textContent = 'Error registering user.';
+      console.error(err);
     }
   });
 
@@ -264,20 +303,17 @@ document.addEventListener('DOMContentLoaded',()=>{
   const faqCategorySelect = el('#faqCategorySelect');
   const faqContainer = el('#faqContainer');
 
-  // Show FAQ page
-  chooseFAQ.addEventListener('click',()=>{
+  chooseFAQ.addEventListener('click', () => {
     showPage('page-faq');
   });
 
-  // Back from FAQ
-  backFromFAQ.addEventListener('click',()=>showPage('page-choice'));
+  backFromFAQ.addEventListener('click', () => showPage('page-choice'));
 
-  // Display FAQ questions on category selection
-  faqCategorySelect.addEventListener('change',()=>{
+  faqCategorySelect.addEventListener('change', () => {
     const category = faqCategorySelect.value;
     faqContainer.innerHTML = '';
-    if(faqData[category]){
-      faqData[category].forEach(item=>{
+    if (faqData[category]) {
+      faqData[category].forEach(item => {
         const qaDiv = document.createElement('div');
         qaDiv.className = 'faq-item';
         qaDiv.innerHTML = `<strong>Q:</strong> ${item.q}<br><strong>A:</strong> ${item.a}`;
@@ -286,64 +322,40 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 
-});
-// Set your backend URL
+  // ------------------ COMPLAINT FORM -----------------
+  document.getElementById('complaintForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
+    const data = {
+      category: document.getElementById('complaintCategory').value,
+      issue: document.getElementById('complaintTitle').value,
+      place: document.getElementById('complaintLocation').value,
+      description: document.getElementById('complaintDesc').value
+    };
 
-// Navigation logic (optional, if you're using page switching)
-document.getElementById('startBtn').addEventListener('click', () => {
-  document.getElementById('page-welcome').classList.add('hidden');
-  document.getElementById('page-choice').classList.remove('hidden');
-});
+    try {
+      const res = await fetch(`${API_BASE}/submit-complaint`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
 
-document.getElementById('chooseComplaint').addEventListener('click', () => {
-  document.getElementById('page-choice').classList.add('hidden');
-  document.getElementById('page-complaint').classList.remove('hidden');
+      const result = await res.json();
+      document.getElementById('complaintResponseArea').textContent = result.message || result.error;
+    } catch (err) {
+      document.getElementById('complaintResponseArea').textContent = 'Error submitting complaint.';
+      console.error(err);
+    }
+  });
 
-  // Show selected location
-  const district = document.getElementById('districtSelect').value;
-  const municipality = document.getElementById('municipalityInput').value;
-  document.getElementById('showLocationComplaint').textContent = `${municipality}, ${district}`;
-});
+  document.getElementById('clearComplaintBtn').addEventListener('click', () => {
+    document.getElementById('complaintCategory').value = "water";
+    document.getElementById('complaintTitle').value = "";
+    document.getElementById('complaintLocation').value = "";
+    document.getElementById('complaintDesc').value = "";
+    document.getElementById('complaintFile').value = "";
+    document.getElementById('filePreview').innerHTML = "";
+    document.getElementById('complaintResponseArea').textContent = "";
+  });
 
-// Complaint form submission
-document.getElementById('complaintForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const data = {
-  category: document.getElementById('complaintCategory').value,
-  issue: document.getElementById('complaintTitle').value,
-  place: document.getElementById('complaintLocation').value,
-  description: document.getElementById('complaintDesc').value
-};;
-
-  try {
-    const res = await fetch(`${API_BASE}/submit-complaint`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-    document.getElementById('complaintResponseArea').textContent = result.message || result.error;
-  } catch (err) {
-    document.getElementById('complaintResponseArea').textContent = 'Error submitting complaint.';
-    console.error(err);
-  }
-});
-// Clear complaint form
-document.getElementById('clearComplaintBtn').addEventListener('click', () => {
-  document.getElementById('complaintCategory').value = "water";
-  document.getElementById('complaintTitle').value = "";
-  document.getElementById('complaintLocation').value = "";
-  document.getElementById('complaintDesc').value = "";
-  document.getElementById('complaintFile').value = "";
-  document.getElementById('filePreview').innerHTML = "";
-  document.getElementById('complaintResponseArea').textContent = "";
-});
-
-// Back button logic
-document.getElementById('backFromComplaint').addEventListener('click', () => {
-  document.getElementById('page-complaint').classList.add('hidden');
-  document.getElementById('page-choice').classList.remove('hidden');
 });

@@ -65,6 +65,11 @@
     <div class="card">
       <h2>What would you like to do?</h2>
       <div class="choice-grid">
+        <div class="choice-card" id="chooseLogin" tabindex="0">
+          <div class="icon">👤</div>
+          <h3>User Login</h3>
+          <p>Register your details to personalize your experience.</p>
+        </div>
         <div class="choice-card" id="chooseQuery" tabindex="0">
           <div class="icon">💬</div>
           <h3>Ask a Query</h3>
@@ -169,7 +174,36 @@
       <div id="faqContainer" class="faq-area"></div>
     </div>
   </section>
+ <!-- Login Page -->
+<section id="page-login" class="page hidden">
+  <div class="card">
+    <div class="page-header">
+      <button class="backBtn btn ghost" id="backFromLogin">← Back</button>
+      <h2>User Login</h2>
+    </div>
 
+    <form id="userForm" class="form">
+      <label>Username
+        <input id="usernameInput" required placeholder="Enter your name">
+      </label>
+
+      <label>Address
+        <input id="addressInput" required placeholder="Your full address">
+      </label>
+
+      <label>Email
+        <input id="emailInput" type="email" required placeholder="you@example.com">
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn primary">Register</button>
+        <button type="button" class="btn ghost" id="clearUserFormBtn">Clear</button>
+      </div>
+    </form>
+
+    <div class="response-area" id="userResponseArea" aria-live="polite"></div>
+  </div>
+</section>
   <footer class="footer">
     <small>Made for hackathon — update <code>API_BASE</code> in <code>script.js</code> when backend URL changes.</small>
   </footer>
