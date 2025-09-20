@@ -1,47 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Chatbot</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Community AI Helpline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#6a11cb">
 </head>
 <body>
-    <!-- 1. Welcome Page -->
-    <section id="welcome-page" class="page">
-        <h1>Welcome to Community Chatbot</h1>
-        <button onclick="goToChoice()">Continue</button>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <svg class="logo" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2L2 7v7c0 5 4 9 10 9s10-4 10-9V7L12 2z"></path></svg>
+        <div>
+          <div class="title">Community AI Helpline</div>
+          <div class="subtitle">Ask queries • File complaints</div>
+        </div>
+      </div>
+      <div class="api-note" id="apiNote">Backend: <code id="apiBaseText">http://localhost:3000</code></div>
+    </header>
+
+    <!-- Pages (single page app) -->
+    <section id="page-welcome" class="page">
+      <div class="card hero">
+        <h1>Welcome 👋</h1>
+        <p>Community help for water, electricity and health — quick answers, and an easy complaint flow.</p>
+        <div class="actions">
+          <button id="startBtn" class="btn primary">Start</button>
+          <button id="demoBtn" class="btn ghost">Try Demo Mode</button>
+        </div>
+      </div>
     </section>
 
-    <!-- 2. Choice Page -->
-    <section id="choice-page" class="page" style="display:none;">
-        <h2>What do you want to do?</h2>
-        <button onclick="showQueryPage()">Ask a Query</button>
-        <button onclick="showComplaintPage()">Place a Complaint</button>
+    <section id="page-choice" class="page hidden">
+      <div class="card">
+        <h2>What would you like to do?</h2>
+        <div class="choice-grid">
+          <div class="choice-card" id="chooseQuery" tabindex="0">
+            <div class="icon">💬</div>
+            <h3>Ask a Query</h3>
+            <p>Get instant answers about water, electricity or health.</p>
+          </div>
+          <div class="choice-card" id="chooseComplaint" tabindex="0">
+            <div class="icon">📝</div>
+            <h3>File a Complaint</h3>
+            <p>Report a local issue so the team can act.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- 3. Query Page -->
-    <section id="query-page" class="page" style="display:none;">
-        <h2>Ask Your Question</h2>
-        <div id="chat-box" class="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Type your question...">
-        <button id="send-btn">Send</button>
-        <button onclick="backToChoice()">Back</button>
+    <section id="page-query" class="page hidden">
+      <div class="card">
+        <div class="page-header">
+          <button class="backBtn btn ghost" id="backFromQuery">← Back</button>
+          <h2>Ask a Query</h2>
+        </div>
+
+        <form id="queryForm" class="form">
+          <label>Category
+            <select id="queryCategory" required>
+              <option value="water">Water Supply</option>
+              <option value="electricity">Electricity</option>
+              <option value="health">Health</option>
+            </select>
+          </label>
+
+          <label>Your question
+            <textarea id="queryMessage" rows="4" placeholder="Describe your question..." required></textarea>
+          </label>
+
+          <label>Contact (optional)
+            <input id="queryContact" type="text" placeholder="Phone or email (optional)">
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="sendQueryBtn">Send Query</button>
+            <button type="button" class="btn ghost" id="clearQueryBtn">Clear</button>
+          </div>
+        </form>
+
+        <div class="response-area" id="queryResponseArea" aria-live="polite"></div>
+      </div>
     </section>
 
-    <!-- 4. Complaint Page -->
-    <section id="complaint-page" class="page" style="display:none;">
-        <h2>Submit Complaint</h2>
-        <select id="category">
-            <option value="water">Water</option>
-            <option value="electricity">Electricity</option>
-            <option value="health">Health</option>
-        </select>
-        <textarea id="complaint-desc" placeholder="Describe the issue"></textarea>
-        <button id="submit-complaint">Submit Complaint</button>
-        <button onclick="backToChoice()">Back</button>
+    <section id="page-complaint" class="page hidden">
+      <div class="card">
+        <div class="page-header">
+          <button class="backBtn btn ghost" id="backFromComplaint">← Back</button>
+          <h2>File a Complaint</h2>
+        </div>
+
+        <form id="complaintForm" class="form">
+          <label>Category
+            <select id="complaintCategory" required>
+              <option value="water">Water Supply</option>
+              <option value="electricity">Electricity</option>
+              <option value="health">Health</option>
+            </select>
+          </label>
+
+          <label>Short title
+            <input id="complaintTitle" required placeholder="e.g., No water since morning">
+          </label>
+
+          <label>Location
+            <input id="complaintLocation" placeholder="Area / street name" required>
+          </label>
+
+          <label>Description
+            <textarea id="complaintDesc" rows="4" placeholder="Describe the issue in detail" required></textarea>
+          </label>
+
+          <label>Attach image (optional)
+            <input id="complaintFile" type="file" accept="image/*">
+            <div id="filePreview" class="file-preview"></div>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="sendComplaintBtn">Submit Complaint</button>
+            <button type="button" class="btn ghost" id="clearComplaintBtn">Clear</button>
+          </div>
+        </form>
+
+        <div class="response-area" id="complaintResponseArea" aria-live="polite"></div>
+      </div>
     </section>
 
-    <script src="script.js"></script>
+    <footer class="footer">
+      <small>Made for hackathon — update <code>API_BASE</code> in <code>script.js</code> when backend URL changes.</small>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
