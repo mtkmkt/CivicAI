@@ -1,244 +1,172 @@
-// script.js – with FAQ search for Kothamangalam, Kerala
+// script.js - FAQ Data for Kothamangalam, Kerala (Detailed Questions)
 const faqData = {
+  // ---------------- WATER SUPPLY ----------------
   water: [
     {
-      q: "What should I do if my tap water supply is suddenly cut off?",
-      a: `Steps:
-1. Check if neighbors are affected: Determine whether it’s a household issue or a community outage.
-2. Look for announcements: Check local municipality or water department notifications via app, website, or WhatsApp groups.
-3. Use stored water wisely: Ration drinking, cooking, and hygiene water.
-4. Seek alternative sources: Nearby community taps, tankers, or bottled water.
-5. Report the issue: Use municipal complaint portal or local helpline with address and timing.`
+      q: "Why is there no water in my area today?",
+      a: `Water supply interruptions in Kothamangalam can happen due to:
+      1. Scheduled Maintenance: Routine pipeline or treatment plant maintenance.
+      2. Emergency Repairs: Burst pipes, pump failures, or other unforeseen issues.
+      3. Water Shortage: Lower reservoir levels or high seasonal demand.
+      For specific information about Kothamangalam, contact: KWA Kothamangalam PH Office at 0485-2822040.`
     },
     {
-      q: "How can I report water leakage or burst pipes in my area?",
-      a: `Steps:
-1. Document the leak: Take a photo or short video for clarity.
-2. Identify location: Note landmarks, house number, or GPS coordinates.
-3. Report to authorities: Use municipal app, helpline, or local ward office.
-4. Warn neighbors: Block area or mark it to prevent accidents.
-5. Follow up: Track complaint ID until repair is confirmed.`
+      q: "What time is the water supply in my locality?",
+      a: `Water timings differ by area. To check Kothamangalam schedules:
+      1. Call KWA Kothamangalam Office: 0485-2822040.
+      2. Visit KWA District Water Page: https://www.kwa.kerala.gov.in
+      3. Check local notice boards for updates.`
     },
     {
-      q: "How to know if your tap water is contaminated?",
-      a: `Steps:
-1. Check appearance and smell: Cloudy water, foul odor, or unusual color is a warning.
-2. Observe health symptoms: Upset stomach, diarrhea, or rashes after consumption.
-3. Test water at home: Use a simple water testing kit for bacteria, pH, chlorine.
-4. Report contamination: Contact local water authority or public health department.
-5. Use safe water alternatives: Boil water or use filters until issue is resolved.`
+      q: "How can I check if water supply is scheduled for maintenance?",
+      a: `Scheduled maintenance is announced through:
+      1. KWA Official Website: https://www.kwa.kerala.gov.in
+      2. Local office notice boards in Kothamangalam.
+      3. Helpline: 0485-2822040.`
     },
     {
-      q: "How to manage water storage at home to avoid contamination?",
-      a: `Steps:
-1. Use clean containers: Wash water tanks and storage jars regularly.
-2. Cover water containers: Prevent dust, insects, and debris from entering.
-3. Avoid cross-contamination: Don’t dip hands or dirty vessels in storage water.
-4. Use taps or spigots: Avoid direct pouring from jugs for drinking water.
-5. Clean tanks periodically: Remove sediments and disinfect once every 3–6 months.`
+      q: "Who should I contact if there is a water leak in the main pipeline?",
+      a: `Report leaks immediately:
+      1. Emergency Helpline: 1916 (24/7)
+      2. KWA Kothamangalam Office: 0485-2822040
+      3. Provide your location and any visible damage details.`
     },
     {
-      q: "How to get emergency water supply during a drought or shortage?",
-      a: `Steps:
-1. Contact municipal water department: Ask about tanker or community water distribution schedule.
-2. Check NGOs or community groups: Some provide emergency water support in droughts.
-3. Use rainwater harvesting if available: Collect and filter rainwater safely.
-4. Store safely: Use clean, covered containers.
-5. Ration water usage: Prioritize drinking, cooking, and hygiene.`
+      q: "How can I pay my water bill online?",
+      a: `To pay your water bill in Kothamangalam:
+      1. Visit KWA Quick Pay: https://www.kwa.kerala.gov.in/quickpay
+      2. Enter your Consumer ID / RR Number.
+      3. Select payment method (Credit/Debit Card, Net Banking, UPI).
+      4. Confirm payment and keep the receipt.
+      For help: Call KWA Kothamangalam Office: 0485-2822040.`
     },
     {
-      q: "How can I reduce water wastage at home?",
-      a: `Steps:
-1. Fix leaks immediately: Faucets, tanks, and pipelines.
-2. Use water-efficient devices: Low-flow taps, showerheads, and toilets.
-3. Reuse water: Use leftover water for cleaning or gardening.
-4. Educate family members: Encourage responsible water usage.
-5. Monitor usage: Check water meter monthly to detect unusual spikes.`
+      q: "How can I apply for a new water connection?",
+      a: `Steps to apply for a new connection in Kothamangalam:
+      1. Visit KWA New Water Connection page: https://www.kwa.kerala.gov.in
+      2. Download and fill out the application form.
+      3. Attach documents: ID proof, property documents.
+      4. Submit form online or at KWA Kothamangalam Office: 0485-2822040
+      5. Pay applicable fees (check the portal for amounts).`
     },
     {
-      q: "How do I know my water is safe during flooding or post-flood situation?",
-      a: `Steps:
-1. Avoid direct tap water: Floods can contaminate pipelines.
-2. Boil water: Bring water to a rolling boil for 1–3 minutes.
-3. Use purification tablets or filters if boiling isn’t possible.
-4. Store safely: Keep in clean, covered containers.
-5. Report contamination to authorities: Helps them take corrective action and alert the community.`
-    },
-    {
-      q: "How to check water pressure issues and what to do?",
-      a: `Steps:
-1. Check all taps: Determine if low pressure is in specific taps or the entire house.
-2. Inspect for leaks: Hidden pipe leaks can cause low pressure.
-3. Check municipal supply timings: Sometimes low pressure occurs during peak usage hours.
-4. Install pressure booster if needed: Only if supply is consistent but low pressure persists.
-5. Report persistent issues: Contact water department with details.`
-    },
-    {
-      q: "How can I manage water billing and connections?",
-      a: `Steps:
-1. Check current bill via municipal app/website.
-2. Pay bills online/offline and save receipt.
-3. Report incorrect bills with evidence.
-4. Apply for new connections (collect documents, pay fees, schedule inspection).
-5. Track connection application status online.
-6. Request additional/high-capacity connections if usage exceeds limit.
-7. Keep self-readings for meter verification.`
+      q: "How can I report low water pressure in my house?",
+      a: `Steps to report low pressure:
+      1. Visit KWA Complaint Registration: https://www.kwa.kerala.gov.in/complaints
+      2. Fill the form with your details and location.
+      3. Alternatively, call helpline: 1916 or KWA Kothamangalam Office: 0485-2822040.`
     }
   ],
+
+  // ---------------- ELECTRICITY ----------------
   electricity: [
     {
-      q: "What to do if there’s a power outage?",
-      a: `Steps:
-1. Check if neighbors are affected.
-2. Look for official announcements via utility app/website.
-3. Use emergency lighting safely.
-4. Avoid opening fridge/freezer for long periods.
-5. Report outage to local electricity board if prolonged.`
-    },
-    {
-      q: "How to report electrical hazards?",
-      a: `Steps:
-1. Identify the hazard (exposed wires, sparking, fallen poles).
-2. Avoid touching affected areas.
-3. Contact electricity board/helpline immediately.
-4. Warn neighbors and cordon off area.
-5. Follow up to ensure repair.`
-    },
-    {
-      q: "How can I manage electricity billing?",
-      a: `Steps:
-1. Check meter reading and bill online.
-2. Pay online/offline and save receipt.
-3. Report discrepancies with photos and readings.
-4. Schedule meter inspection if readings seem off.
-5. Monitor consumption to avoid spikes.`
-    },
-    {
-      q: "How to apply for a new electricity connection?",
-      a: `Steps:
-1. Check eligibility and required documents (ID, property proof).
-2. Submit application online/offline.
-3. Pay connection fee.
-4. Schedule inspection and meter installation.
-5. Track connection status online.`
-    },
-    {
       q: "How to report a power outage?",
-      a: `Call KSEB Customer Care 1912 or use https://www.kseb.in/online-services`
+      a: `For Kothamangalam electricity outage:
+      1. Call KSEB Customer Care: 1912
+      2. Provide your Consumer Number, address, and problem details.
+      3. Optionally, report via KSEB online portal: https://www.kseb.in/online-services
+      4. Keep a note of complaint reference number.`
     },
     {
       q: "Who to contact for faulty wiring?",
-      a: `Call local KSEB Kothamangalam office or 1912 for emergencies.`
+      a: `For faulty wiring issues:
+      1. Call KSEB local office in Kothamangalam: 0485-282XXXX
+      2. For emergencies (sparks, exposed wires), immediately call 1912.
+      3. Avoid touching wires until the electrician arrives.`
     },
     {
-      q: "How can I check scheduled power cuts?",
-      a: `Visit https://www.kseb.in/outage-schedule or call local office.`
+      q: "How can I pay my electricity bill online?",
+      a: `Steps to pay online in Kothamangalam:
+      1. Go to KSEB Online Payment Portal: https://www.kseb.in/online-services
+      2. Enter your Consumer Number.
+      3. Click 'Fetch Bill' to see amount.
+      4. Select payment method (Credit/Debit, Net Banking, UPI).
+      5. Confirm payment and save receipt.
+      For issues, call KSEB Customer Care: 1912.`
+    },
+    {
+      q: "What to do if there is a spark or exposed wire?",
+      a: `Safety steps:
+      1. Stay away from the wire and cordon the area.
+      2. Call 1912 immediately for emergency electrical support.
+      3. Warn neighbors if nearby.`
+    },
+    {
+      q: "How to request a new electricity connection?",
+      a: `Steps for new connection in Kothamangalam:
+      1. Visit KSEB New Connection Page: https://www.kseb.in/online-services
+      2. Fill the application form online.
+      3. Submit required documents: ID, property proof.
+      4. Pay applicable fees online or at the local KSEB office.`
+    },
+    {
+      q: "How to check scheduled power cuts?",
+      a: `To know scheduled outages:
+      1. Check KSEB portal: https://www.kseb.in/outage-schedule
+      2. Contact KSEB Kothamangalam local office: 0485-282XXXX
+      3. Check local notice boards for updates.`
     },
     {
       q: "How can I check my electricity consumption?",
-      a: `Login to https://www.kseb.in/online-services with Consumer Number.`
+      a: `Steps to check consumption:
+      1. Visit KSEB online portal: https://www.kseb.in/online-services
+      2. Log in with Consumer Number.
+      3. View current and past bill details and consumption history.`
     }
   ],
+
+  // ---------------- HEALTH ----------------
   health: [
     {
-      q: "I’m in a medical emergency. Who should I contact?",
-      a: `Steps:
-1. Call emergency services: India – 108 (ambulance), 102 (medical transport)
-2. Provide location (street, landmark, floor, GPS coordinates) and patient condition.
-3. Follow operator instructions for first aid if needed.
-4. Prepare documents: ID, insurance, previous medical history.
-5. Stay on the line until help arrives.`
-    },
-    {
-      q: "How can I find vaccinations?",
-      a: `Steps:
-1. Check official immunization schedules (children, adults, pregnant women).
-2. Locate vaccination centers via government apps, hospitals, or clinics.
-3. Book appointments if required.
-4. Carry ID and vaccination records.
-5. Follow all doses as per schedule.`
-    },
-    {
-      q: "How can I find an ambulance nearby?",
-      a: `Steps:
-1. Call emergency numbers (India – 108/102; global local services).
-2. Use dedicated ambulance apps if available.
-3. Provide location and patient condition.
-4. Prepare path and patient for pickup.`
-    },
-    {
-      q: "What should I do in case of a snake or animal attack?",
-      a: `Steps:
-1. Move to safe location; do not chase/capture animal.
-2. Call emergency services or local animal control.
-3. First aid: Snake bite – immobilize limb; Other bites – wash & antiseptic.
-4. Seek hospital treatment (anti-venom, rabies vaccine).
-5. Report incident to authorities.`
-    },
-    {
-      q: "I need urgent blood or plasma. What should I do?",
-      a: `Steps:
-1. Identify blood group.
-2. Contact local blood banks/hospitals.
-3. Use verified donor networks/apps.
-4. Share patient details (blood group, urgency, location).
-5. Arrange transport to hospital.`
-    },
-    {
-      q: "How can I report a public health hazard?",
-      a: `Steps:
-1. Identify hazard (contaminated water, mosquito breeding, chemical spill).
-2. Contact local authorities (municipality/health department).
-3. Provide location, type, severity.
-4. Follow safety instructions.
-5. Follow up to confirm resolution.`
-    },
-    {
-      q: "What to do in case of fire or mass casualty event?",
-      a: `Steps:
-1. Call fire/emergency services.
-2. Evacuate immediately, avoid elevators.
-3. Assist others safely.
-4. Provide first aid.
-5. Follow official instructions.`
-    },
-    {
-      q: "I have symptoms of contagious disease (flu, COVID-19). What should I do?",
-      a: `Steps:
-1. Isolate yourself.
-2. Seek medical guidance.
-3. Get tested if required.
-4. Follow treatment instructions.
-5. Inform close contacts.`
-    },
-    {
       q: "Where is the nearest hospital?",
-      a: `Govt. Taluk Hospital Kothamangalam: 0485-2821010`
+      a: `Nearest hospitals in Kothamangalam:
+      1. Govt. Taluk Hospital, Kothamangalam — 0485-2821010
+      2. General Hospital, Kothamangalam — 0485-2822020
+      For emergencies, dial 108.`
     },
     {
       q: "How to book a hospital appointment online?",
-      a: `Use Kerala eHealth: https://www.ehealth.kerala.gov.in`
+      a: `Steps:
+      1. Visit Kerala eHealth Portal: https://www.ehealth.kerala.gov.in
+      2. Create an account or log in.
+      3. Select hospital and department.
+      4. Choose date/time and confirm appointment.`
+    },
+    {
+      q: "What to do for a medical emergency?",
+      a: `1. Dial 108 immediately.
+      2. Provide location and nature of emergency.
+      3. Follow operator instructions until help arrives.`
     },
     {
       q: "How can I find a local pharmacy?",
-      a: `Search Google Maps or ask local PHC.`
+      a: `1. Search on Google Maps for pharmacies in Kothamangalam.
+      2. Check with local PHC or municipality for licensed options.
+      3. Visit pharmacy with valid prescription if needed.`
     },
     {
       q: "Where can I get COVID-19 vaccination?",
-      a: `Book via https://www.ehealth.kerala.gov.in`
+      a: `1. Visit Kerala eHealth Portal: https://www.ehealth.kerala.gov.in
+      2. Check nearest vaccination centers in Kothamangalam.
+      3. Book appointment online.`
     },
     {
       q: "Who do I contact for ambulance services?",
-      a: `Dial 108 or local private ambulance.`
+      a: `1. Dial 108 for government ambulance.
+      2. Private ambulance services in Kothamangalam: +91 9497XXXXX
+      3. Provide your exact location and patient details.`
     },
     {
       q: "How to report health hazards in the community?",
-      a: `Contact PHC Kothamangalam: 0485-2821010 or https://dhs.kerala.gov.in`
+      a: `1. Contact local PHC Kothamangalam: 0485-2821010
+      2. Submit complaint via Kerala Health Dept portal: https://dhs.kerala.gov.in
+      3. Provide photos or description of the hazard.`
     }
   ]
 };
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'http://localhost:5050';
 let userLocation = { district: '', municipality: '' };
 
 function el(q) { return document.querySelector(q); }
@@ -247,58 +175,28 @@ function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const elPage = document.getElementById(id);
   if (elPage) elPage.classList.remove('hidden');
+  const baseText = document.getElementById('apiBaseText');
+  if (baseText) baseText.textContent = API_BASE;
 }
 
-// -------------- NEW: Simple FAQ keyword search --------------
-function searchFaq(question) {
-  const msg = question.toLowerCase();
-  let bestMatch = null;
-  let bestScore = 0;
-
-  Object.keys(faqData).forEach(cat => {
-    faqData[cat].forEach(item => {
-      const qLower = item.q.toLowerCase();
-
-      const stopWords = ['how','to','the','a','in','is','of','my','for','what','where'];
-      const msgWords = msg.split(/\W+/).filter(w => w && !stopWords.includes(w));
-      const qWords   = qLower.split(/\W+/).filter(w => w && !stopWords.includes(w));
-
-      const overlap = msgWords.filter(w => qWords.includes(w));
-      const score = overlap.length;
-
-      if (score > bestScore) {
-        bestScore = score;
-        bestMatch = item;
+// ----------------- KEYWORD MATCHING FUNCTION -----------------
+function findFAQAnswer(message) {
+  message = message.toLowerCase();
+  for (const category in faqData) {
+    for (const item of faqData[category]) {
+      const question = item.q.toLowerCase();
+      const keywords = question.split(/\W+/).filter(k => k.length > 2);
+      const matches = keywords.filter(k => message.includes(k));
+      if (matches.length >= Math.max(1, Math.floor(keywords.length / 3))) {
+        return item.a;
       }
-    });
-  });
-
-  if (bestScore >= 2) return bestMatch;
+    }
+  }
   return null;
 }
 
+// ----------------- CHAT & PAGE LOGIC -----------------
 document.addEventListener('DOMContentLoaded', () => {
-  el('#startBtn').addEventListener('click', () => {
-    const district = el('#districtSelect').value;
-    const municipality = el('#municipalityInput').value.trim();
-    if (!district || !municipality) return alert('Choose district and enter municipality.');
-    userLocation = { district, municipality };
-    showPage('page-choice');
-  });
-
-  el('#chooseQuery').addEventListener('click', () => {
-    showPage('page-query');
-    el('#showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
-  });
-  el('#chooseComplaint').addEventListener('click', () => {
-    showPage('page-complaint');
-    el('#showLocationComplaint').textContent = `${userLocation.municipality}, ${userLocation.district}`;
-  });
-  el('#chooseFAQ').addEventListener('click', () => showPage('page-faq'));
-  el('#backFromQuery').addEventListener('click', () => showPage('page-choice'));
-  el('#backFromComplaint').addEventListener('click', () => showPage('page-choice'));
-  el('#backFromFAQ').addEventListener('click', () => showPage('page-choice'));
-
   const chatContainer = el('#chatContainer');
   const queryForm = el('#queryForm');
 
@@ -310,7 +208,47 @@ document.addEventListener('DOMContentLoaded', () => {
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }
 
-  queryForm.addEventListener('submit', async ev => {
+  // ---------- WELCOME PAGE ----------
+  el('#startBtn')?.addEventListener('click', () => {
+    const district = el('#districtSelect')?.value;
+    const municipality = el('#municipalityInput')?.value.trim();
+    if (!district || !municipality) return alert('Choose district and enter municipality.');
+    userLocation = { district, municipality };
+    showPage('page-choice');
+  });
+
+  el('#demoBtn')?.addEventListener('click', () => {
+    showPage('page-query');
+    appendChat('bot', '(Demo mode) Ask about water, electricity or health.');
+    el('#showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
+  });
+
+  // ---------- CHOICE PAGE BUTTONS ----------
+  el('#chooseQuery')?.addEventListener('click', () => {
+    showPage('page-query');
+    el('#showLocationQuery').textContent = `${userLocation.municipality}, ${userLocation.district}`;
+  });
+
+  el('#chooseComplaint')?.addEventListener('click', () => {
+    showPage('page-complaint');
+    el('#showLocationComplaint').textContent = `${userLocation.municipality}, ${userLocation.district}`;
+  });
+
+  el('#chooseLogin')?.addEventListener('click', () => {
+    showPage('page-login');
+  });
+
+  el('#chooseFAQ')?.addEventListener('click', () => {
+    showPage('page-faq');
+  });
+
+  el('#backFromQuery')?.addEventListener('click', () => showPage('page-choice'));
+  el('#backFromComplaint')?.addEventListener('click', () => showPage('page-choice'));
+  el('#backFromLogin')?.addEventListener('click', () => showPage('page-choice'));
+  el('#backFromFAQ')?.addEventListener('click', () => showPage('page-choice'));
+
+  // ---------- CHAT QUERY ----------
+  queryForm?.addEventListener('submit', async ev => {
     ev.preventDefault();
     const message = el('#queryMessage').value.trim();
     if (!message) return;
@@ -318,17 +256,20 @@ document.addEventListener('DOMContentLoaded', () => {
     appendChat('user', message);
     el('#queryMessage').value = '';
 
-    const faqMatch = searchFaq(message);
-    if (faqMatch) {
-      appendChat('bot', faqMatch.a);
-      return;
-    }
-
     const botBubble = document.createElement('div');
     botBubble.className = 'chat-bubble bot';
     botBubble.textContent = '...';
     chatContainer.appendChild(botBubble);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 
+    // Check FAQ first
+    const faqAnswer = findFAQAnswer(message);
+    if (faqAnswer) {
+      botBubble.textContent = faqAnswer;
+      return;
+    }
+
+    // Otherwise call backend API
     try {
       const res = await fetch(API_BASE + '/api/query', {
         method: 'POST',
@@ -336,16 +277,38 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ message, location: userLocation })
       });
       const data = await res.json();
-      botBubble.textContent = data.answer || 'Answer coming soon.';
+      botBubble.textContent = data.answer || '(Demo) Answer coming soon.';
     } catch (err) {
-      botBubble.textContent = 'Sorry, network error.';
+      botBubble.textContent = `(Demo) Sorry, I could not find a relevant answer.`;
     }
   });
 
-  const faqCategorySelect = el('#faqCategorySelect');
-  const faqContainer = el('#faqContainer');
-  faqCategorySelect.addEventListener('change', () => {
-    const category = faqCategorySelect.value;
+  // ---------- USER LOGIN ----------
+  el('#userForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = {
+      username: el('#usernameInput')?.value,
+      address: el('#addressInput')?.value,
+      email: el('#emailInput')?.value
+    };
+    try {
+      const res = await fetch(`${API_BASE}/register-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      el('#userResponseArea').textContent = result.message || result.error;
+    } catch (err) {
+      el('#userResponseArea').textContent = 'Error registering user.';
+      console.error(err);
+    }
+  });
+
+  // ---------- FAQ PAGE ----------
+  el('#faqCategorySelect')?.addEventListener('change', () => {
+    const category = el('#faqCategorySelect').value;
+    const faqContainer = el('#faqContainer');
     faqContainer.innerHTML = '';
     if (faqData[category]) {
       faqData[category].forEach(item => {
@@ -355,5 +318,40 @@ document.addEventListener('DOMContentLoaded', () => {
         faqContainer.appendChild(qaDiv);
       });
     }
+  });
+
+  el('#backFromFAQ')?.addEventListener('click', () => showPage('page-choice'));
+
+  // ---------- COMPLAINT FORM ----------
+  el('#complaintForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = {
+      category: el('#complaintCategory')?.value,
+      issue: el('#complaintTitle')?.value,
+      place: el('#complaintLocation')?.value,
+      description: el('#complaintDesc')?.value
+    };
+    try {
+      const res = await fetch(`${API_BASE}/submit-complaint`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      el('#complaintResponseArea').textContent = result.message || result.error;
+    } catch (err) {
+      el('#complaintResponseArea').textContent = 'Error submitting complaint.';
+      console.error(err);
+    }
+  });
+
+  el('#clearComplaintBtn')?.addEventListener('click', () => {
+    el('#complaintCategory').value = "water";
+    el('#complaintTitle').value = "";
+    el('#complaintLocation').value = "";
+    el('#complaintDesc').value = "";
+    el('#complaintFile').value = "";
+    el('#filePreview').innerHTML = "";
+    el('#complaintResponseArea').textContent = "";
   });
 });
