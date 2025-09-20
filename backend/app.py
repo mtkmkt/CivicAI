@@ -10,7 +10,11 @@ complaints_collection = db['complaints']
 @app.route('/')
 def home():
     return "Backend is working!"
-
+@app.route('/api/query', methods=['POST'])
+def handle_query():
+    data = request.get_json(force=True)
+    print("Received query:", data)
+    return jsonify({"response": "Query received!"})
 @app.route('/submit-complaint', methods=['POST'])
 def submit_complaint():
     try:
@@ -37,4 +41,4 @@ def get_complaints():
         print("🔥 Error fetching complaints:", str(e))
         return jsonify({"error": "Could not retrieve complaints"}), 500
 if __name__ == '__main__':
-    app.run(debug=True, port=5050)
+    app.run(debug=True, port=5050,use_reloader=False)
