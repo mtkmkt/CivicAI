@@ -27,8 +27,9 @@ def submit_complaint():
         # Extract fields from frontend
         category = data.get('category')
         issue = data.get('issue')
-        place = data.get('location')
+        place = data.get('place')
         description = data.get('description')
+        print("Validation check:", category, issue, place, description)
 
         # Basic validation
         if not category or not issue or not place or not description:
