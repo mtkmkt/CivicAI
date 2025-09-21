@@ -27,7 +27,7 @@ def submit_complaint():
         # Extract fields from frontend
         category = data.get('category')
         issue = data.get('issue')
-        place = data.get('place')
+        place = data.get('location')
         description = data.get('description')
 
         # Basic validation
@@ -40,7 +40,7 @@ def submit_complaint():
             "issue": issue,
             "place": place,
             "description": description,
-            "timestamp": datetime.datetime()
+            "timestamp": datetime.datetime.utcnow()
         }
 
         # Save to MongoDB
@@ -79,7 +79,7 @@ def register_user():
             "username": username,
             "address": address,
             "email": email,
-            "registered_at": datetime.datetime()
+            "registered_at": datetime.datetime.utcnow()
         }
 
         result = users_collection.insert_one(user)
