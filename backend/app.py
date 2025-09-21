@@ -40,7 +40,7 @@ def submit_complaint():
             "issue": issue,
             "place": place,
             "description": description,
-            "timestamp": datetime.datetime.utcnow()
+            "timestamp": datetime.datetime()
         }
 
         # Save to MongoDB
@@ -79,7 +79,7 @@ def register_user():
             "username": username,
             "address": address,
             "email": email,
-            "registered_at": datetime.datetime.utcnow()
+            "registered_at": datetime.datetime()
         }
 
         result = users_collection.insert_one(user)
